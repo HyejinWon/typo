@@ -1,0 +1,212 @@
+------------2------------
+sentence :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됏다
+
+error eumjol : 됏
+error_list : ['됐', '딧', '됫', '돗', '왯']
+forward :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됐다
+
+reverse :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됐다
+
+
+sentence :된뽓
+
+error eumjol : 뽓
+error_list : ['쫏', '봇', '뽁', '뻣', '못']
+forward :된뻣
+
+reverse :된뻣
+
+
+sentence :어디론가 그를 찿으러 길을 헤맸다
+
+error eumjol : 찿
+error_list : ['창']
+not change
+not change
+
+sentence :어디론가 그를 찿으러 길을 헤맸다
+
+error eumjol : 찿
+error_list : ['창']
+not change
+not change
+
+sentence :뭔가 가슴이 설렜다는 느낌을 받았다
+
+error eumjol : 렜
+error_list : ['렛', '랬', '겠']
+forward :뭔가 가슴이 설랬다는 느낌을 받았다
+
+reverse :뭔가 가슴이 설랬다는 느낌을 받았다
+
+
+sentence :웅이는 가슴이 설렜다
+
+error eumjol : 렜
+error_list : ['렛', '랬', '겠']
+forward :웅이는 가슴이 설랬다
+
+reverse :웅이는 가슴이 설랬다
+
+
+sentence :찿고 찾으러 떠났다
+
+error eumjol : 찿
+error_list : ['창']
+not change
+not change
+
+sentence :러시아인을 거짓말장이요 도둑놈이라고 한 미쉴레의 말에 대해 헤르쩬은 반문하였다
+
+error eumjol : 쩬
+error_list : ['짼', '뗀', '넨', '젠', '찐', '쩽']
+forward :러시아인을 거짓말장이요 도둑놈이라고 한 미쉴레의 말에 대해 헤르젠은 반문하였다
+
+reverse :러시아인을 거짓말장이요 도둑놈이라고 한 미쉴레의 말에 대해 헤르젠은 반문하였다
+
+
+sentence :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됏다
+error eumjol : 됏
+error_list : ['됐', '딧', '됫', '돗', '왯']
+forward :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됐다
+reverse :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됐다
+
+------------3------------
+sentence :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됏다
+
+error eumjol : 됏
+error_list : ['됐', '딧', '됫', '돗', '왯']
+forward :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됐다
+
+reverse :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됐다
+
+
+sentence :된뽓
+
+error eumjol : 뽓
+error_list : ['쫏', '봇', '뽁', '뻣', '못']
+not change
+not change
+
+sentence :어디론가 그를 찿으러 길을 헤맸다
+
+error eumjol : 찿
+error_list : ['창']
+not change
+not change
+
+sentence :어디론가 그를 찿으러 길을 헤맸다
+
+error eumjol : 찿
+error_list : ['창']
+not change
+not change
+
+sentence :뭔가 가슴이 설렜다는 느낌을 받았다
+
+error eumjol : 렜
+error_list : ['렛', '랬', '겠']
+forward :뭔가 가슴이 설랬다는 느낌을 받았다
+
+reverse :뭔가 가슴이 설랬다는 느낌을 받았다
+
+
+sentence :웅이는 가슴이 설렜다
+
+error eumjol : 렜
+error_list : ['렛', '랬', '겠']
+forward :웅이는 가슴이 설랬다
+
+reverse :웅이는 가슴이 설랬다
+
+
+sentence :찿고 찾으러 떠났다
+
+error eumjol : 찿
+error_list : ['창']
+not change
+not change
+
+sentence :러시아인을 거짓말장이요 도둑놈이라고 한 미쉴레의 말에 대해 헤르쩬은 반문하였다
+
+error eumjol : 쩬
+error_list : ['짼', '뗀', '넨', '젠', '찐', '쩽']
+forward :러시아인을 거짓말장이요 도둑놈이라고 한 미쉴레의 말에 대해 헤르젠은 반문하였다
+
+reverse :러시아인을 거짓말장이요 도둑놈이라고 한 미쉴레의 말에 대해 헤르젠은 반문하였다
+
+
+sentence :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됏다
+error eumjol : 됏
+error_list : ['됐', '딧', '됫', '돗', '왯']
+forward :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됐다
+not change
+
+------------4------------
+sentence :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됏다
+
+error eumjol : 됏
+error_list : ['됐', '딧', '됫', '돗', '왯']
+forward :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됐다
+
+not change
+
+sentence :된뽓
+
+error eumjol : 뽓
+error_list : ['쫏', '봇', '뽁', '뻣', '못']
+not change
+not change
+
+sentence :어디론가 그를 찿으러 길을 헤맸다
+
+error eumjol : 찿
+error_list : ['창']
+not change
+not change
+
+sentence :어디론가 그를 찿으러 길을 헤맸다
+
+error eumjol : 찿
+error_list : ['창']
+not change
+not change
+
+sentence :뭔가 가슴이 설렜다는 느낌을 받았다
+
+error eumjol : 렜
+error_list : ['렛', '랬', '겠']
+forward :뭔가 가슴이 설랬다는 느낌을 받았다
+
+reverse :뭔가 가슴이 설랬다는 느낌을 받았다
+
+
+sentence :웅이는 가슴이 설렜다
+
+error eumjol : 렜
+error_list : ['렛', '랬', '겠']
+forward :웅이는 가슴이 설랬다
+
+not change
+
+sentence :찿고 찾으러 떠났다
+
+error eumjol : 찿
+error_list : ['창']
+not change
+not change
+
+sentence :러시아인을 거짓말장이요 도둑놈이라고 한 미쉴레의 말에 대해 헤르쩬은 반문하였다
+
+error eumjol : 쩬
+error_list : ['짼', '뗀', '넨', '젠', '찐', '쩽']
+not change
+reverse :러시아인을 거짓말장이요 도둑놈이라고 한 미쉴레의 말에 대해 헤르젠은 반문하였다
+
+
+sentence :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됏다
+error eumjol : 됏
+error_list : ['됐', '딧', '됫', '돗', '왯']
+forward :하지만 신백철이 갑작스런 부상으로 경기를 포기하면서 부전승으로 우승을 차지하게 됐다
+not change
+
