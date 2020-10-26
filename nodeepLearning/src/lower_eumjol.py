@@ -693,7 +693,9 @@ def findErrorAndRevision(fline):
 # Todo : 음절 공백 유무에 따라서 ngram모델 만듬, 
 # 이를 기반으로 ngram 생성모델 같은 느낌으로 만드는것, 위와 차이점은 ngram의 단위가 음절이라는것,
 # 공백은 _로 살릴예정 아니면 그냥 잘라도 될지도.
-def eumjol_ngram(fline):
+# 키보드 에러넣어서 후보군 생성한뒤 가장 높은 빈도를 차지하는 것 을 출력했음
+# 키보드 에러 안넣은것도 결과 한번 뽑아보기
+def eumjol_ngram(fline, ERROR=True):
     ngram_list = [2,3,4]
     ngram_result = []
     w = open(args.result_filename,'w')
@@ -702,8 +704,8 @@ def eumjol_ngram(fline):
         if not os.path.exists(str(_ngram_list)+args.pickle_name):
             ndict1, ndict2 = eumjol_ngram_nltk(_ngram_list, fline)
         else:
-            ndict1 = openPickle(str(_ngram_list)+args.pickle_name) # --pikcle_name='./_eumjol_ngram.pkl
-            ndict2 = openPickle(str(_ngram_list)+args.pickle_name2) # --pickle_name2='./_eumjol_ngram_rev.pkl
+            ndict1 = openPickle(str(_ngram_list)+args.pickle_name) # --pikcle_name='eumjol_ngram.pkl
+            ndict2 = openPickle(str(_ngram_list)+args.pickle_name2) # --pickle_name2='eumjol_ngram_rev.pkl
         
         w.write('------------'+str(_ngram_list)+'------------\n')
         temp = [0,0]
@@ -714,30 +716,55 @@ def eumjol_ngram(fline):
                     if i in OUT_DIC: # Todo : if i - ngram < 0 Should handle
                         
                         windows = (sentence[index-_ngram_list+1 : index+1].replace(' ','_'), sentence[index : index+_ngram_list].replace(' ','_'))
-                        error_list = get_keyboard_error(i)
-                        error_list = list(set(filter_outbound(error_list)))
-                        windows_append_error = put_eumjol_keyboard_error(error_list, windows)
-                        reverse, forward = find_fronteumjol_candidate_max(windows_append_error, _ngram_list, ndict1, ndict2)
-                        
-                        w.write('sentence :'+ sentence+'\nerror eumjol : '+i+'\nerror_list : '+str(error_list)+'\n')
-                        try:
+                        if ERROR:
+                            error_list = get_keyboard_error(i)
+                            error_list = list(set(filter_outbound(error_list)))
+                            windows_append_error = put_eumjol_keyboard_error(error_list, windows)
+                            reverse, forward = find_fronteumjol_candidate_max(windows_append_error, _ngram_list, ndict1, ndict2)
+                            w.write('sentence :'+ sentence+'\nerror eumjol : '+i+'\nerror_list : '+str(error_list)+'\n')
+                            try:
 
-                            if forward[1] != 0:
-                                w.write('forward :'+sentence[:index+(-_ngram_list+2)]+''.join(forward[0]).replace('_',' ')+sentence[index+1:]+'\n')
-                                temp[0] += 1
-                            else:
+                                if forward[1] != 0:
+                                    w.write('forward :'+sentence[:index+(-_ngram_list+2)]+''.join(forward[0]).replace('_',' ')+sentence[index+1:]+'\n')
+                                    temp[0] += 1
+                                else:
+                                    w.write('not change\n')
+                            except IndexError:
                                 w.write('not change\n')
-                        except IndexError:
-                            w.write('not change\n')
 
-                        try:
-                            if reverse[1] != 0:
-                                w.write('reverse :'+sentence[:index]+''.join(reverse[0]).replace('_',' ')+sentence[index+_ngram_list-1:]+'\n\n')
-                                temp[1] += 1
-                            else:
+                            try:
+                                if reverse[1] != 0:
+                                    w.write('reverse :'+sentence[:index]+''.join(reverse[0]).replace('_',' ')+sentence[index+_ngram_list-1:]+'\n\n')
+                                    temp[1] += 1
+                                else:
+                                    w.write('not change\n\n')
+                            except IndexError:
                                 w.write('not change\n\n')
-                        except IndexError:
-                            w.write('not change\n\n')
+
+
+                        else:
+                            if _ngram_list == 2:
+                                reverse = find_maxmun_bi(sentence[index+1], ndict2)
+                                forward = find_maxmun_bi(sentence[index-1], ndict1)
+                                
+                            elif _ngram_list == 3:
+                                reverse = find_maxmun_tri(sentence[index+1: index+3], ndict2)
+                                forward = find_maxmun_tri(sentence[index-2:index], ndict1)
+                                
+                            else:
+                                reverse = find_maxmun_tri(sentence[index +1 : index+4], ndict2)
+                                forward = find_maxmun_tri(sentence[index-3:index], ndict1)
+                            w.write('sentence :'+ sentence+'\nerror eumjol : '+i+'\n')
+                            if len(forward) == 0 :
+                                w.write('not change\n')
+                            else:
+                                w.write('forward :'+sentence[:index-1]+str(forward[0][0])+sentence[index+1:]+'\n')
+                            if len(reverse) == 0:
+                                w.write('not change\n')
+                            else:
+                                w.write('reverse :'+sentence[:index]+str(reverse[0][0])+sentence[index+1:]+'\n\n')
+
+                        
 
         ngram_result.append(temp)
 
@@ -806,6 +833,7 @@ def find_fronteumjol_candidate_max(all_case, ngram, cfd1, cfd2):
                 condition2 = (i[1], i[2], i[3])
                 condition1 = (j[0], j[1], j[2])
 
+        # forward
         try:   
             result = max(temp[1], cfd1[condition1][j[-1]]) 
             
@@ -815,6 +843,7 @@ def find_fronteumjol_candidate_max(all_case, ngram, cfd1, cfd2):
         except IndexError:
             temp = (condition1, cfd1[condition1][j[-1]]) 
 
+        # reverse
         try:
             result2 = max(temp2[1], cfd2[condition2][i[0]])
             if result2 != temp2[1]:
@@ -886,7 +915,7 @@ if __name__ == "__main__":
     
     print('total outofbound eumjol is ', len(OUT_DIC))
     
-    eumjol_ngram(fline)
+    eumjol_ngram(fline, False)
     '''
     sorted_dic = sorted(OUT_DIC.items(), key = (lambda x:x[1]), reverse=True)
 
